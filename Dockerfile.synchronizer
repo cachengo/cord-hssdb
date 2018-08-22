@@ -14,8 +14,8 @@
 
 # xosproject/hssdb-synchronizer
 FROM cachengo/xos-synchronizer-base:2.0.0
-
-COPY . /opt/xos/synchronizers/hssdb
+COPY xos/synchronizer /opt/xos/synchronizers/hssdb
+COPY VERSION /opt/xos/synchronizers/hssdb/
 
 ENTRYPOINT []
 
@@ -50,4 +50,4 @@ LABEL org.label-schema.schema-version=$org_label_schema_schema_version \
       org.opencord.component.xos.vcs-url=$org_opencord_component_xos_vcs_url \
       org.opencord.component.xos.vcs-ref=$org_opencord_component_xos_vcs_ref
 
-CMD bash -c "cd /opt/xos/synchronizers/hssdb; ./run-from-api.sh"
+CMD ["/usr/bin/python", "/opt/xos/synchronizers/hssdb/hssdb-synchronizer.py"]
